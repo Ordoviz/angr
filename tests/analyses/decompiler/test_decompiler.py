@@ -3536,12 +3536,12 @@ class TestDecompiler(unittest.TestCase):
         bin_path = os.path.join(test_location, "x86_64", "inline_gym.so")
         proj = angr.Project(bin_path, auto_load_libs=False)
         cfg = proj.analyses.CFGFast(normalize=True, data_references=True)
-        f = proj.kb.functions['main']
+        f = proj.kb.functions["main"]
         d = proj.analyses[Decompiler].prep()(
             f,
             cfg=cfg.model,
-            inline_functions={ proj.kb.functions['mylloc'], proj.kb.functions['five'] },
-            options=[ ( angr.analyses.decompiler.decompilation_options.options[0], True ) ]
+            inline_functions={proj.kb.functions["mylloc"], proj.kb.functions["five"]},
+            options=[(angr.analyses.decompiler.decompilation_options.options[0], True)],
         )
         self._print_decompilation_result(d)
 
@@ -3556,14 +3556,15 @@ class TestDecompiler(unittest.TestCase):
             f,
             cfg=cfg.model,
             inline_functions=f.functions_reachable(),
-            options=[ ( angr.analyses.decompiler.decompilation_options.options[0], True ) ]
+            options=[(angr.analyses.decompiler.decompilation_options.options[0], True)],
         )
         self._print_decompilation_result(d)
 
         assert "five" not in d.codegen.text
         assert "mylloc" not in d.codegen.text
-        assert d.codegen.text.count("foo") == 1 # the recursive call
+        assert d.codegen.text.count("foo") == 1  # the recursive call
         assert "bar" not in d.codegen.text
+
 
 if __name__ == "__main__":
     unittest.main()
