@@ -56,11 +56,7 @@ If you're performing lots of concrete or partially-concrete execution
   take advantage of it for concrete emulation. To enable it, add the options in
   the set ``angr.options.unicorn`` to your state. Keep in mind that while most
   items under ``angr.options`` are individual options, ``angr.options.unicorn``
-  is a bundle of options, and is thus a set. *NOTE*: At time of writing the
-  official version of unicorn engine will not work with angr - we have a lot of
-  patches to it to make it work well with angr. They're all pending pull
-  requests at this time, so sit tight. If you're really impatient, ping us about
-  uploading our fork!
+  is a bundle of options, and is thus a set.
 * *Enable fast memory and fast registers*. The state options
   ``angr.options.FAST_MEMORY`` and ``angr.options.FAST_REGISTERS`` will do this.
   These will switch the memory/registers over to a less intensive memory model
